@@ -1,0 +1,219 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 31, 41, 55;
+  --background-rgb: 243, 244, 246;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary/90;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white hover:bg-accent/90;
+  }
+
+  .btn-disabled {
+    @apply bg-gray-300 text-gray-500 cursor-not-allowed;
+  }
+
+  .input {
+    @apply px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50;
+  }
+
+  .select {
+    @apply px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50;
+  }
+
+  .radio-group {
+    @apply flex flex-wrap gap-4;
+  }
+
+  .radio-item {
+    @apply flex items-center space-x-2;
+  }
+
+  .visualization-bar {
+    @apply transition-all duration-300 bg-primary rounded-sm;
+  }
+
+  .visualization-bar-comparing {
+    @apply bg-accent;
+  }
+
+  .visualization-bar-swapped {
+    @apply bg-red-500;
+  }
+
+  .visualization-bar-sorted {
+    @apply bg-secondary;
+  }
+
+  .visualization-bar.animate-pulse {
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .visualization-container {
+    @apply relative h-full flex items-end justify-around;
+  }
+
+  .visualization-overlay {
+    @apply absolute inset-0 bg-white/50 flex items-center justify-center;
+  }
+
+  .visualization-complete {
+    @apply bg-white p-4 rounded-lg shadow-md text-center;
+  }
+
+  .panel-title {
+    @apply text-lg font-semibold mb-2;
+  }
+
+  .metrics-container {
+    @apply mt-4 p-2 bg-gray-50 rounded-lg text-sm;
+  }
+
+  .completion-message {
+    @apply mt-2 text-sm font-medium text-secondary;
+  }
+}
+
+/* Cross-browser compatibility styles */
+@supports not (animation-name: pulse) {
+  .animate-pulse {
+    opacity: 0.8;
+  }
+}
+
+/* Fallback for browsers that don't support grid */
+@supports not (display: grid) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .grid-cols-1 > * {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .md\:grid-cols-2 > * {
+      width: 50%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .lg\:grid-cols-2 > * {
+      width: 50%;
+    }
+
+    .lg\:grid-cols-3 > * {
+      width: 33.333333%;
+    }
+  }
+}
+
+/* Improve touch interactions on mobile devices */
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .radio-item {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .visualization-bar {
+    transition: none !important;
+  }
+
+  .animate-pulse,
+  .animate-spin {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode improvements */
+@media (forced-colors: active) {
+  .visualization-bar {
+    border: 1px solid;
+  }
+
+  .visualization-bar-comparing {
+    border: 2px solid;
+  }
+
+  .visualization-bar-swapped {
+    border: 2px dashed;
+  }
+
+  .visualization-bar-sorted {
+    border: 1px solid;
+  }
+
+  .btn {
+    border: 1px solid;
+  }
+}
+
+/* Print styles */
+@media print {
+  .btn,
+  .select,
+  .input,
+  [role="switch"] {
+    display: none;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .metrics-container {
+    border: 1px solid #ccc;
+  }
+}
