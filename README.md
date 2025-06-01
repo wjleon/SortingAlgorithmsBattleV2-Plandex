@@ -2,6 +2,8 @@
 
 A web application to visualize and compare different sorting algorithms in real-time, built with Next.js, TypeScript, and Tailwind CSS.
 
+> **Note**: This repository is part of the blog post ["What a Comeback: Google Firebase Studio Strikes Back This Time, Lovable Still Performs Flawlessly"](https://medium.com/@wjleon/what-a-comeback-google-firebase-studio-strikes-back-this-time-lovable-still-performs-flawlessly-cc9aafabaf6c) on Medium.
+
 ![Sorting Algorithm Visualizer](https://via.placeholder.com/800x400?text=Sorting+Algorithm+Visualizer)
 
 ## Features
